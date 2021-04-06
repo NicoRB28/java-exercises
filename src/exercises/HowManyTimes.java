@@ -4,19 +4,19 @@ public class HowManyTimes {
 
 	
 	public static int howManyTimesCanRepeat(String a ,String b) {
+		
 		int count = 0;
+		
 		StringBuilder sb = new StringBuilder(b);
 		
 		if(a.length()> sb.length()) {
 			return 0;
 		}
 		
-		boolean ok = true;
-		
-		while (ok) {
+		while (sb.length() != 0) {
 			
-			if(sb.length() < a.length() || sb.equals("")) {
-				break;		
+			if(sb.length() < a.length() || sb.length() == 0) {
+				return count;		
 			}
 			
 			int partialCount = 0;
@@ -32,9 +32,9 @@ public class HowManyTimes {
 			
 			if(partialCount == a.length()) {
 				count++;	
-				a.chars().mapToObj(Character::toString).forEach(str -> sb.deleteCharAt(sb.lastIndexOf(str)));
+				updateStringBuilder(a, sb);
 			}else {
-				ok = false;
+				return count;
 			}
 			
 		}
@@ -42,8 +42,16 @@ public class HowManyTimes {
 		return count;
 	}
 
+
+	private static void updateStringBuilder(String a, StringBuilder sb) {
+		a.chars().mapToObj(Character::toString).forEach(str -> sb.deleteCharAt(sb.lastIndexOf(str)));
+	}
+
 	
 	public static void main(String[] args) {
-		System.out.println(howManyTimesCanRepeat("zzzzz","zzzzzzzzz"));
+		System.out.println(howManyTimesCanRepeat("abc","xxxxxxxxxx"));
+		System.out.println(howManyTimesCanRepeat("abc","abcabc"));
+		System.out.println(howManyTimesCanRepeat("abc","aabcabczazbzc"));
+		System.out.println(howManyTimesCanRepeat("abc",""));
 	}
 }
