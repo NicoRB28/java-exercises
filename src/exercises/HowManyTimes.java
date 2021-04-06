@@ -15,22 +15,11 @@ public class HowManyTimes {
 		
 		while (sb.length() != 0) {
 			
-			if(sb.length() < a.length() || sb.length() == 0) {
+			if(sb.length() < a.length()) {
 				return count;		
 			}
 			
-			int partialCount = 0;
-
-			for(int i = 0; i < a.length(); i++) {
-				
-				String letter = String.valueOf(a.charAt(i));
-				
-				if(sb.lastIndexOf(letter)!= -1) {
-					partialCount++;	
-				}
-			}
-			
-			if(partialCount == a.length()) {
+			if(hasAllTheCharacters(a, sb) == a.length()) {
 				count++;	
 				updateStringBuilder(a, sb);
 			}else {
@@ -40,6 +29,20 @@ public class HowManyTimes {
 		}
 		
 		return count;
+	}
+
+
+	private static int hasAllTheCharacters(String a, StringBuilder sb) {
+		int partialCount = 0;
+		for(int i = 0; i < a.length(); i++) {
+			
+			String letter = String.valueOf(a.charAt(i));
+			
+			if(sb.lastIndexOf(letter)!= -1) {
+				partialCount++;	
+			}
+		}
+		return partialCount;
 	}
 
 
