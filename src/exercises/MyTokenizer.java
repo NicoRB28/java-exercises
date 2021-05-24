@@ -6,7 +6,6 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -36,7 +35,7 @@ public class MyTokenizer {
 		Consumer<String> lowerAndNoSpace = toLower.andThen(noSpace);
 		Consumer<String> print = System.out::println;
 
-		List<String> strings = new ArrayList();
+		List<String> strings = new ArrayList<>();
 
 		Consumer<String> addToList = str -> strings.add(str);
 		Consumer<String> lowerAndNoSpaceAndThenAdd = lowerAndNoSpace.andThen(addToList);
